@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 
 import CharactersService from "@/app/services/characters";
+import { CharactersResponse } from "@/app/services/characters/types";
 
 import type { Options } from "../types";
 
@@ -15,6 +16,8 @@ export default function useHomeContent() {
     options[0].value,
   );
 
+  const [list, setList] = useState<CharactersResponse[]>([]);
+
   const handleGetCards = useCallback(() => {
     const action = {
       [options[0].value]: CharactersService.get.getCharacters,
@@ -27,7 +30,9 @@ export default function useHomeContent() {
 
   return {
     options,
+    list,
     selectedFilter,
+    setList,
     setSelectFilter,
     handleGetCards,
   };

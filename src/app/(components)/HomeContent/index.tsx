@@ -8,11 +8,11 @@ import Filter from "../filter";
 import useHomeContent from "./hooks/useHomeContent";
 
 export default function HomeContent() {
-  const { options, selectedFilter, setSelectFilter, handleGetCards } =
+  const { options, selectedFilter, list, setSelectFilter, setList, handleGetCards } =
     useHomeContent();
 
   useEffect(() => {
-    handleGetCards();
+    handleGetCards().then(setList);
   }, [handleGetCards]);
 
   return (
@@ -22,7 +22,7 @@ export default function HomeContent() {
         options={options}
         setValue={setSelectFilter}
       />
-      <ContentList />
+      <ContentList items={list} />
     </>
   );
 }
