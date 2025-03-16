@@ -7,5 +7,5 @@
 
 .card-base:hover {
   cursor: pointer;
-  filter: blur(0.8px) brightness(45%);
+  filter: brightness(45%);
 }
