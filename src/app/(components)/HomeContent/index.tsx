@@ -3,9 +3,10 @@
 import { useEffect } from "react";
 
 import ContentList from "../ContentList";
-import Filter from "../filter";
+
 
 import useHomeContent from "./hooks/useHomeContent";
+import Filter from "../Filter";
 
 export default function HomeContent() {
   const { options, selectedFilter, list, setSelectFilter, setList, handleGetCards } =
