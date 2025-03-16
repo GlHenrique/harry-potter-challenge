@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import fallbackCard from "@/app/assets/fallback-card.jpeg";
 import gryffindor from "@/app/assets/Gryffindor.svg";
@@ -8,7 +11,7 @@ import slytherin from "@/app/assets/Slytherin.svg";
 
 import "./itemCard.css";
 
-type ItemCardProps = {
+export type ItemCardProps = {
   name: string;
   realName: string;
   image: string;
@@ -32,8 +35,25 @@ export default function ItemCard({
   gender,
   patronus,
 }: ItemCardProps) {
+  const router = useRouter();
+
+  const handleNavigate = (infos: ItemCardProps) => () => {
+    const search = new URLSearchParams(infos).toString();
+    router.push(`character-details/${name}?${search}`);
+  };
+
   return (
-    <div className="flex flex-col min-w-[150px] max-w-[200px] card-base">
+    <div
+      className="flex flex-col min-w-[150px] max-w-[200px] card-base"
+      onClick={handleNavigate({
+        name,
+        realName,
+        image,
+        house,
+        gender,
+        patronus,
+      })}
+    >
       <div className="relative w-[150px] h-[200px]">
         {house ? (
           <span className="absolute left-1 top-1">
