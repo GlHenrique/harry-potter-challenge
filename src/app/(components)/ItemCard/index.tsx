@@ -1,6 +1,10 @@
 import Image from "next/image";
 
 import fallbackCard from "@/app/assets/fallback-card.jpeg";
+import gryffindor from "@/app/assets/Gryffindor.svg";
+import hufflepuff from "@/app/assets/Hufflepuff.svg";
+import ravenclaw from "@/app/assets/Ravenclaw.svg";
+import slytherin from "@/app/assets/Slytherin.svg";
 
 import "./itemCard.css";
 
@@ -13,6 +17,13 @@ type ItemCardProps = {
   patronus: string;
 };
 
+const houses = {
+  Gryffindor: gryffindor as string,
+  Hufflepuff: hufflepuff as string,
+  Ravenclaw: ravenclaw as string,
+  Slytherin: slytherin as string,
+};
+
 export default function ItemCard({
   name,
   realName,
@@ -23,7 +34,17 @@ export default function ItemCard({
 }: ItemCardProps) {
   return (
     <div className="flex flex-col min-w-[150px] max-w-[200px] card-base">
-      <div className="w-[150px] h-[200px]">
+      <div className="relative w-[150px] h-[200px]">
+        {house ? (
+          <span className="absolute left-1 top-1">
+            <Image
+              alt={`House: ${house}`}
+              height={5}
+              src={houses[house as keyof typeof houses]}
+              width={10}
+            />
+          </span>
+        ) : null}
         <Image
           alt={`character-${name}`}
           className="rounded max-h-[200px] h-[200px]"
