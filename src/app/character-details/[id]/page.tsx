@@ -8,26 +8,16 @@ import BackButton from "@/app/(components)/BackButton";
 import DetailsCard from "@/app/(components)/DetailsCard";
 import { ItemCardProps } from "@/app/(components)/ItemCard";
 import gryffindorBackdrop from "@/app/assets/Gryffindor-backdrop.svg";
-import gryffindorTag from "@/app/assets/Gryffindor-tag.svg";
 import hufflepuffBackdrop from "@/app/assets/Hufflepuff-backdrop.svg";
-import hufflepuffTag from "@/app/assets/Hufflepuff-tag.svg";
 import ravenclawBackdrop from "@/app/assets/Ravenclaw-backdrop.svg";
-import ravenclawTag from "@/app/assets/Ravenclaw-tag.svg";
 import slytherinBackdrop from "@/app/assets/Slytherin-backdrop.svg";
-import slytherinTag from "@/app/assets/Slytherin-tag.svg";
+import { tagImages } from "@/app/constants";
 
 const backdropImages = {
   Gryffindor: gryffindorBackdrop,
   Hufflepuff: hufflepuffBackdrop,
   Ravenclaw: ravenclawBackdrop,
   Slytherin: slytherinBackdrop,
-};
-
-const tagImages = {
-  Gryffindor: gryffindorTag,
-  Hufflepuff: hufflepuffTag,
-  Ravenclaw: ravenclawTag,
-  Slytherin: slytherinTag,
 };
 
 export default function CharacterDetails() {

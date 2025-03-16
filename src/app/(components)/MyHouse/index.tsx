@@ -1,24 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
+
+import { getHouse, setHouse } from "@/app/actions/action";
+import { tagImages } from "@/app/constants";
+
+import styles from "./myHouse.module.css";
 
 const options = [
-  { label: "Gryffindor", value: "gryffindor", color: "text-amber-400" },
-  { label: "Hufflepuff", value: "hufflepuff", color: "text-amber-900" },
-  { label: "Ravenclaw", value: "ravenclaw", color: "text-cyan-500" },
-  { label: "Slytherin", value: "slytherin", color: "text-green-600" },
+  { label: "Gryffindor", value: "Gryffindor", color: "text-amber-400" },
+  { label: "Hufflepuff", value: "Hufflepuff", color: "text-amber-900" },
+  { label: "Ravenclaw", value: "Ravenclaw", color: "text-cyan-500" },
+  { label: "Slytherin", value: "Slytherin", color: "text-green-600" },
 ];
 
-export default function MyHouse() {
-  const [value, setValue] = useState(options[0].value);
+export default function MyHouse({ house }: { house: string }) {
+  const [value, setValue] = useState(house || "Gryffindor");
+
+  const handleGetStoredHouse = useCallback(async () => {
+    const storedHouse = await getHouse();
+
+    if (storedHouse?.value) {
+      setValue(storedHouse?.value);
+    }
+  }, []);
+
+  const handleSetHouse = useCallback((option: string) => {
+    setValue(option);
+    setHouse(option);
+  }, []);
+
+  useEffect(() => {
+    void handleGetStoredHouse();
+  }, [handleGetStoredHouse]);
+
   return (
-    <div className="flex">
-      <label className="text-purple-400 mr-1">My House:</label>
+    <div className="flex mr-8">
+      <label className="mr-1">My House:</label>
       <select
         className={`${options.find((option) => option.value === value)?.color}`}
         id="filter"
         name="filter"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => handleSetHouse(e.target.value)}
         value={value}
       >
         {options.map((option) => (
@@ -27,6 +51,14 @@ export default function MyHouse() {
           </option>
         ))}
       </select>
+      <Image
+        alt="My favorite house"
+        className={`${styles.topToEnter} absolute top-0 right-0`}
+        height={200}
+        key={house}
+        src={tagImages[house as keyof typeof tagImages]}
+        width={40}
+      />
     </div>
   );
 }
