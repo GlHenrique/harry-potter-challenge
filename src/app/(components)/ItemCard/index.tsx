@@ -8,6 +8,7 @@ import gryffindor from "@/app/assets/Gryffindor.svg";
 import hufflepuff from "@/app/assets/Hufflepuff.svg";
 import ravenclaw from "@/app/assets/Ravenclaw.svg";
 import slytherin from "@/app/assets/Slytherin.svg";
+import { CharactersResponse } from "@/app/services/characters/types";
 
 import "./itemCard.css";
 
@@ -18,6 +19,7 @@ export type ItemCardProps = {
   house: string;
   gender: string;
   patronus: string;
+  fullInfo: CharactersResponse;
 };
 
 const houses = {
@@ -34,11 +36,14 @@ export default function ItemCard({
   house,
   gender,
   patronus,
+  fullInfo,
 }: ItemCardProps) {
   const router = useRouter();
 
   const handleNavigate = (infos: ItemCardProps) => () => {
-    const search = new URLSearchParams(infos).toString();
+    const search = new URLSearchParams(
+      infos.fullInfo as unknown as Record<string, string>,
+    ).toString();
     router.push(`character-details/${name}?${search}`);
   };
 
@@ -52,11 +57,12 @@ export default function ItemCard({
         house,
         gender,
         patronus,
+        fullInfo,
       })}
     >
       <div className="relative w-[150px] h-[200px]">
         {house ? (
-          <span className="absolute left-1 top-1">
+          <span className="absolute left-2 top-2">
             <Image
               alt={`House: ${house}`}
               height={5}
