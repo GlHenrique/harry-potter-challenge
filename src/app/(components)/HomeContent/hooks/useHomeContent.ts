@@ -17,9 +17,11 @@ export default function useHomeContent() {
     options[0].value,
   );
 
+  const [loading, setLoading] = useState(false);
   const [list, setList] = useState<CharactersResponse[]>([]);
 
   const handleGetCards = useCallback(() => {
+    setLoading(() => true);
     const action = {
       [options[0].value]: CharactersService.get.getCharacters,
       [options[1].value]: CharactersService.get.getStudents,
@@ -36,8 +38,10 @@ export default function useHomeContent() {
 
   return {
     options,
+    loading,
     list,
     selectedFilter,
+    setLoading,
     setList,
     setSelectFilter,
     handleGetCards,

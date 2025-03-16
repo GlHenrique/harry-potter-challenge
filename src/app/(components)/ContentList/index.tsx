@@ -6,21 +6,25 @@ import { getFavorites, setFavorites } from "@/app/actions/action";
 import { CharactersResponse } from "@/app/services/characters/types";
 
 import ItemCard from "../ItemCard";
+import LoadingSpinner from "../LoadingSpinner";
 
 type ContentListProps = {
   items: CharactersResponse[];
   setList: Dispatch<SetStateAction<CharactersResponse[]>>;
+  loading: boolean;
 };
 
-export default function ContentList({ items, setList }: ContentListProps) {
+export default function ContentList({
+  items,
+  setList,
+  loading,
+}: ContentListProps) {
   const handleAddRemoveFavorite = useCallback(async (characterId: string) => {
     const storedFavorite = await getFavorites();
     if (storedFavorite?.value.split(",").includes(characterId)) {
       // Remove Favorite
       setFavorites(
-        storedFavorite.value
-          .split(",")
-          .filter((value) => value !== characterId),
+        storedFavorite.value.split(",").filter((value) => value !== characterId)
       );
       await handleUpdateContentList();
       return;
@@ -29,7 +33,7 @@ export default function ContentList({ items, setList }: ContentListProps) {
     await setFavorites(
       storedFavorite?.value
         ? [storedFavorite?.value, characterId]
-        : [characterId],
+        : [characterId]
     );
     await handleUpdateContentList();
   }, []);
@@ -41,29 +45,31 @@ export default function ContentList({ items, setList }: ContentListProps) {
       currentList.map((character) => ({
         ...character,
         favorite: favorited?.includes(character.id),
-      })),
+      }))
     );
   };
 
   return (
     <main className="py-5 px-5">
       <h3 className="text-2xl w-fit mb-5">All characters</h3>
+      <LoadingSpinner loading={loading} />
       <div className="flex flex-wrap gap-x-4 gap-y-8">
-        {items.map(
-          ({ id, name, gender, house, patronus, actor, image }, index) => (
-            <ItemCard
-              fullInfo={items[index]}
-              gender={gender}
-              house={house}
-              image={image}
-              key={id}
-              name={name}
-              onFavorite={handleAddRemoveFavorite}
-              patronus={patronus}
-              realName={actor}
-            />
-          ),
-        )}
+        {!loading &&
+          items.map(
+            ({ id, name, gender, house, patronus, actor, image }, index) => (
+              <ItemCard
+                fullInfo={items[index]}
+                gender={gender}
+                house={house}
+                image={image}
+                key={id}
+                name={name}
+                onFavorite={handleAddRemoveFavorite}
+                patronus={patronus}
+                realName={actor}
+              />
+            )
+          )}
       </div>
     </main>
   );

@@ -11,8 +11,10 @@ export default function HomeContent() {
   const {
     options,
     selectedFilter,
+    loading,
     list,
     setSelectFilter,
+    setLoading,
     setList,
     handleGetCards,
     handleGetFavorites,
@@ -29,7 +31,7 @@ export default function HomeContent() {
             }))
           );
         }
-      });
+      }).finally(() => setLoading(() => false));
     });
   }, [handleGetCards]);
 
@@ -40,7 +42,7 @@ export default function HomeContent() {
         options={options}
         setValue={setSelectFilter}
       />
-      <ContentList setList={setList} items={list} />
+      <ContentList loading={loading} setList={setList} items={list} />
     </>
   );
 }
