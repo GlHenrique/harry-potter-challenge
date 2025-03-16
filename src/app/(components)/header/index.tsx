@@ -1,8 +1,8 @@
 export default function Header() {
   return (
-    <header>
-      <h1>Harry Potter Challenge</h1>
-      <h2>Hey user! Here we can show the characters</h2>
+    <header className="pt-10 pb-5 px-5">
+      <h1 className="text-3xl">Harry Potter Challenge</h1>
+      <h2 className="text-xl">Welcome to HP Card Game ⚡️</h2>
     </header>
   );
 }

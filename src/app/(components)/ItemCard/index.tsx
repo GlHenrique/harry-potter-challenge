@@ -7,14 +7,13 @@ export default function ItemCard() {
         <Image
           alt="character-1"
           height={209}
-          objectFit="contain"
           src="https://ik.imagekit.io/hpapi/harry.jpg"
           width={150}
         />
       </div>
       <div className="flex flex-col">
         <h4 className="font-bold text-xl">Name</h4>
-        <h3 className="font-semibold text-base">Real Name</h3>
+        <h5 className="font-semibold text-base">Real Name</h5>
       </div>
       <div className="flex flex-col">
         <p className="text-sm uppercase font-extralight">House</p>
