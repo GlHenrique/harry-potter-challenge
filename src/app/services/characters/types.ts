@@ -23,4 +23,5 @@ export type CharactersResponse = {
   alternate_actors: string[];
   alive: boolean;
   image: string;
+  favorite?: boolean;
 };

@@ -13,3 +13,15 @@ export async function getHouse() {
 
   return cookieStore.get("my-house");
 }
+
+export async function setFavorites(value: string[]) {
+  const cookieStore = await cookies();
+
+  cookieStore.set("favorites", value.join());
+}
+
+export async function getFavorites() {
+  const cookieStore = await cookies();
+
+  return cookieStore.get("favorites");
+}

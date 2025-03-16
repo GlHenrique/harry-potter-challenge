@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 
+import { getFavorites } from "@/app/actions/action";
 import CharactersService from "@/app/services/characters";
 import { CharactersResponse } from "@/app/services/characters/types";
 
@@ -28,6 +29,11 @@ export default function useHomeContent() {
     return action[selectedFilter]();
   }, [selectedFilter]);
 
+  const handleGetFavorites = useCallback(async () => {
+    const storedFavorite = await getFavorites();
+    return storedFavorite?.value.split(",");
+  }, []);
+
   return {
     options,
     list,
@@ -35,5 +41,6 @@ export default function useHomeContent() {
     setList,
     setSelectFilter,
     handleGetCards,
+    handleGetFavorites,
   };
 }

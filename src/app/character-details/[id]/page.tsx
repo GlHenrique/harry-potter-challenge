@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 
 import BackButton from "@/app/(components)/BackButton";
 import DetailsCard from "@/app/(components)/DetailsCard";
+import Favorite from "@/app/(components)/Favorite";
 import { ItemCardProps } from "@/app/(components)/ItemCard";
 import gryffindorBackdrop from "@/app/assets/Gryffindor-backdrop.svg";
 import hufflepuffBackdrop from "@/app/assets/Hufflepuff-backdrop.svg";
@@ -52,6 +53,7 @@ export default function CharacterDetails() {
       alternate_actors: [],
       alive: searchParams.get("alive") === "true",
       image: searchParams.get("image") || "",
+      favorite: searchParams.get("favorite") === "true",
     });
   }, [searchParams]);
 
@@ -77,6 +79,7 @@ export default function CharacterDetails() {
           width={40}
         />
       ) : null}
+      <Favorite favorite={character.favorite} />
     </main>
   );
 }

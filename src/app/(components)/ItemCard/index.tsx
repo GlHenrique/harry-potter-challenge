@@ -10,6 +10,8 @@ import ravenclaw from "@/app/assets/Ravenclaw.svg";
 import slytherin from "@/app/assets/Slytherin.svg";
 import { CharactersResponse } from "@/app/services/characters/types";
 
+import Favorite from "../Favorite";
+
 import "./itemCard.css";
 
 export type ItemCardProps = {
@@ -20,6 +22,7 @@ export type ItemCardProps = {
   gender: string;
   patronus: string;
   fullInfo: CharactersResponse;
+  onFavorite?: (characterId: string) => void;
 };
 
 const houses = {
@@ -37,6 +40,7 @@ export default function ItemCard({
   gender,
   patronus,
   fullInfo,
+  onFavorite,
 }: ItemCardProps) {
   const router = useRouter();
 
@@ -71,6 +75,10 @@ export default function ItemCard({
             />
           </span>
         ) : null}
+        <Favorite
+          favorite={fullInfo.favorite}
+          onClick={() => onFavorite?.(fullInfo.id)}
+        />
         <Image
           alt={`character-${name}`}
           className="rounded max-h-[200px] h-[200px]"

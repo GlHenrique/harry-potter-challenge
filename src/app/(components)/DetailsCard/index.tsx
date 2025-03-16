@@ -44,7 +44,7 @@ export default function DetailsCard({
           Alive · {character.alive ? "Yes" : "No"}
         </p>
         <p className="font-normal text-gray-700">
-          Ancestry · {character.ancestry || ""}
+          Ancestry · {character.ancestry || "Not informed"}
         </p>
       </div>
     </div>
