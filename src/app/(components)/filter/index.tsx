@@ -1,14 +1,28 @@
-const options = [
-  { label: "Characters", value: "characters" },
-  { label: "Students", value: "students" },
-  { label: "Staff", value: "staff" },
-];
+import type { Dispatch, SetStateAction } from "react";
 
-export default function Filter() {
+import type { Options } from "../HomeContent/types";
+
+type FilterProps = {
+  options: Options[];
+  optionValue: string;
+  setValue: Dispatch<SetStateAction<string>>;
+};
+
+export default function Filter({
+  options,
+  setValue,
+  optionValue,
+}: FilterProps) {
   return (
     <div className="flex border-y-1 border-gray-200 py-3 px-6">
       <label className="text-blue-500 mr-1">Filter:</label>
-      <select className="text-amber-400" id="filter" name="filter">
+      <select
+        className="text-amber-400"
+        id="filter"
+        name="filter"
+        onChange={(e) => setValue(e.target.value)}
+        value={optionValue}
+      >
         {options.map(({ label, value }) => (
           <option key={value} value={value}>
             {label}

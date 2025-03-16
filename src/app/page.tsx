@@ -1,13 +1,11 @@
-import ContentList from "./(components)/ContentList";
-import Filter from "./(components)/filter";
 import Header from "./(components)/header";
+import HomeContent from "./(components)/HomeContent";
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <Filter />
-      <ContentList />
+      <Header />;
+      <HomeContent />
     </>
   );
 }

@@ -6,6 +6,7 @@ export default function ItemCard() {
       <div className="w-[150px] h-[209px]">
         <Image
           alt="character-1"
+          className="rounded"
           height={209}
           src="https://ik.imagekit.io/hpapi/harry.jpg"
           width={150}
