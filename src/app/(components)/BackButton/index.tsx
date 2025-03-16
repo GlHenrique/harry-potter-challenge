@@ -2,15 +2,6 @@
 
 import { useRouter } from "next/navigation";
 
-// absolute
-//   left-[calc(50%-230px)]
-//   top-[calc(50%-200px)]
-//   bg-white
-//   hover:bg-gray-200
-//   font-medium
-//   cursor-pointer
-//   rounded-lg text-sm p-2.5 text-center inline-flex items-center
-
 export default function BackButton() {
   const router = useRouter();
 
