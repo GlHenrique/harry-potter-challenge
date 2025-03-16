@@ -6,8 +6,6 @@ import Image from "next/image";
 import { getHouse, setHouse } from "@/app/actions/action";
 import { tagImages } from "@/app/constants";
 
-import styles from "./myHouse.module.css";
-
 const options = [
   { label: "Gryffindor", value: "Gryffindor", color: "text-amber-400" },
   { label: "Hufflepuff", value: "Hufflepuff", color: "text-amber-900" },
@@ -53,7 +51,7 @@ export default function MyHouse({ house }: { house: string }) {
       </select>
       <Image
         alt="My favorite house"
-        className={`${styles.topToEnter} absolute top-0 right-0`}
+        className="topToEnter absolute top-0 right-0"
         height={200}
         key={house}
         src={tagImages[house as keyof typeof tagImages]}

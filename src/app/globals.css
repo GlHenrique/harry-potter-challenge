@@ -12,8 +12,23 @@
   --font-mono: var(--font-montserrat);
 }
 
+@keyframes top-to-enter {
+  0% {
+   transform: translateY(-150px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Montserrat, Work Sans, sans-serif;
 }
+
+.topToEnter {
+  animation: top-to-enter 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+

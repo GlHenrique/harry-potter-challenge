@@ -73,7 +73,7 @@ export default function CharacterDetails() {
       {character.house ? (
         <Image
           alt={`House ${character.house}`}
-          className="absolute top-0 right-0"
+          className="topToEnter absolute top-0 right-0"
           height={200}
           src={tagImages[character.house as keyof typeof tagImages]}
           width={40}
