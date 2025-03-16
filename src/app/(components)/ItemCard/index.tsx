@@ -21,10 +21,10 @@ export type ItemCardProps = {
 };
 
 const houses = {
-  Gryffindor: gryffindor as string,
-  Hufflepuff: hufflepuff as string,
-  Ravenclaw: ravenclaw as string,
-  Slytherin: slytherin as string,
+  Gryffindor: gryffindor,
+  Hufflepuff: hufflepuff,
+  Ravenclaw: ravenclaw,
+  Slytherin: slytherin,
 };
 
 export default function ItemCard({
