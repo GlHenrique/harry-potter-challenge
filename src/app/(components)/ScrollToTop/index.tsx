@@ -6,7 +6,6 @@ import styles from "./ScrollToTop.module.css";
 
 export default function ScrollToTopButton() {
   const { visible, scrollToTop } = useScrollToTop();
-  console.log(visible);
 
   return (
     <button
