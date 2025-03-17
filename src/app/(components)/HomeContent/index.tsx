@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 import ContentList from "../ContentList";
-import Filter from "../Filter";
+import Filter from "../Filter/index";
 
 import useHomeContent from "./hooks/useHomeContent";
 
