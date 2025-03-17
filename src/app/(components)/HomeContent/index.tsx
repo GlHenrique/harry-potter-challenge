@@ -22,16 +22,16 @@ export default function HomeContent() {
 
   useEffect(() => {
     handleGetFavorites().then((favorites) => {
-      handleGetCards().then((characters) => {
-        if (favorites?.length) {
+      handleGetCards()
+        .then((characters) => {
           setList(
             characters.map((character) => ({
               ...character,
-              favorite: favorites.includes(character.id),
+              favorite: favorites?.includes(character.id) || false,
             }))
           );
-        }
-      }).finally(() => setLoading(() => false));
+        })
+        .finally(() => setLoading(() => false));
     });
   }, [handleGetCards]);
 
@@ -42,7 +42,12 @@ export default function HomeContent() {
         options={options}
         setValue={setSelectFilter}
       />
-      <ContentList loading={loading} setList={setList} items={list} />
+      <ContentList
+        loading={loading}
+        setList={setList}
+        items={list}
+        selectedFilter={selectedFilter}
+      />
     </>
   );
 }

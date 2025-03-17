@@ -53,7 +53,7 @@ export default function ItemCard({
 
   return (
     <div
-      className="flex flex-col min-w-[150px] max-w-[200px] card-base"
+      className="flex flex-col min-w-[150px] card-base max-[370px]:grow-0!"
       onClick={handleNavigate({
         name,
         realName,

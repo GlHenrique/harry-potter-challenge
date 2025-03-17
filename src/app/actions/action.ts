@@ -3,9 +3,13 @@
 import { cookies } from "next/headers";
 
 export async function setHouse(value: string) {
+  const expiresIn = new Date();
+  expiresIn.setDate(expiresIn.getDate() + 2); // 2 days of expiration
   const cookieStore = await cookies();
 
-  cookieStore.set("my-house", value);
+  cookieStore.set("my-house", value, {
+    expires: expiresIn,
+  });
 }
 
 export async function getHouse() {
@@ -15,9 +19,13 @@ export async function getHouse() {
 }
 
 export async function setFavorites(value: string[]) {
+  const expiresIn = new Date();
+  expiresIn.setDate(expiresIn.getDate() + 2); // 2 days of expiration
   const cookieStore = await cookies();
 
-  cookieStore.set("favorites", value.join());
+  cookieStore.set("favorites", value.join(), {
+    expires: expiresIn,
+  });
 }
 
 export async function getFavorites() {

@@ -12,12 +12,14 @@ type ContentListProps = {
   items: CharactersResponse[];
   setList: Dispatch<SetStateAction<CharactersResponse[]>>;
   loading: boolean;
+  selectedFilter: string;
 };
 
 export default function ContentList({
   items,
   setList,
   loading,
+  selectedFilter,
 }: ContentListProps) {
   const handleAddRemoveFavorite = useCallback(async (characterId: string) => {
     const storedFavorite = await getFavorites();
@@ -44,16 +46,16 @@ export default function ContentList({
     setList((currentList) =>
       currentList.map((character) => ({
         ...character,
-        favorite: favorited?.includes(character.id),
+        favorite: favorited?.includes(character.id) || false,
       }))
     );
   };
 
   return (
     <main className="py-5 px-5">
-      <h3 className="text-2xl w-fit mb-5">All characters</h3>
+      <h3 className="text-2xl w-fit mb-5">All {selectedFilter}</h3>
       <LoadingSpinner loading={loading} />
-      <div className="flex flex-wrap gap-x-4 gap-y-8">
+      <div className="flex flex-wrap gap-x-4 gap-y-8 max-[370px]:justify-center">
         {!loading &&
           items.map(
             ({ id, name, gender, house, patronus, actor, image }, index) => (

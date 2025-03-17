@@ -15,9 +15,9 @@ export default function Filter({
 }: FilterProps) {
   return (
     <div className="flex border-y-1 border-gray-200 py-3 px-6">
-      <label className="text-blue-500 mr-1">Filter:</label>
+      <label className="max-sm:text-sm mr-1">Filter:</label>
       <select
-        className="text-amber-400"
+        className="max-sm:text-sm text-amber-400"
         id="filter"
         name="filter"
         onChange={(e) => setValue(e.target.value)}

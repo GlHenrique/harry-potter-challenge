@@ -35,9 +35,9 @@ export default function MyHouse({ house }: { house: string }) {
 
   return (
     <div className="flex mr-8">
-      <label className="mr-1">My House:</label>
+      <label className="max-sm:text-sm mr-1">My House:</label>
       <select
-        className={`${options.find((option) => option.value === value)?.color}`}
+        className={`max-sm:text-sm ${options.find((option) => option.value === value)?.color}`}
         id="filter"
         name="filter"
         onChange={(e) => handleSetHouse(e.target.value)}
