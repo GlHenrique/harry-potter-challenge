@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 
 import ContentList from "../ContentList";
+import Filter from "../Filter";
 
 import useHomeContent from "./hooks/useHomeContent";
-import Filter from "../Filter";
 
 export default function HomeContent() {
   const {
@@ -28,12 +28,12 @@ export default function HomeContent() {
             characters.map((character) => ({
               ...character,
               favorite: favorites?.includes(character.id) || false,
-            }))
+            })),
           );
         })
         .finally(() => setLoading(() => false));
     });
-  }, [handleGetCards]);
+  }, [handleGetFavorites, handleGetCards, setList, setLoading]);
 
   return (
     <>
@@ -43,10 +43,10 @@ export default function HomeContent() {
         setValue={setSelectFilter}
       />
       <ContentList
-        loading={loading}
-        setList={setList}
         items={list}
+        loading={loading}
         selectedFilter={selectedFilter}
+        setList={setList}
       />
     </>
   );
