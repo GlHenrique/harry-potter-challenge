@@ -13,6 +13,7 @@ export default function Favorite({ favorite, onClick }: FavoriteProps) {
         e.stopPropagation();
         onClick?.();
       }}
+      role="button"
     >
       {favorite ? (
         <svg

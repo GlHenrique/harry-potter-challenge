@@ -1,6 +1,6 @@
 export default function LoadingSpinner({ loading }: { loading: boolean }) {
   return loading ? (
-    <div className="text-center">
+    <div className="text-center" data-testid="loading-spinner">
       <div role="status">
         <svg
           aria-hidden="true"
