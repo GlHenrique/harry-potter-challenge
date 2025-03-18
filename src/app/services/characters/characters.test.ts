@@ -11,7 +11,9 @@ describe("CharactersService", () => {
   });
 
   test("getCharacters - should return characters list", async () => {
-    const mockData = [{ id: 1, name: "Harry Potter" }];
+    const mockData = [
+      { id: 1, name: "Harry Potter", dateOfBirth: "", favorite: false },
+    ];
     (api.get as any).mockResolvedValue({ data: mockData });
 
     const result = await CharactersService.get.getCharacters();
@@ -28,7 +30,9 @@ describe("CharactersService", () => {
   });
 
   test("getStudents - should return students list", async () => {
-    const mockData = [{ id: 2, name: "Hermione Granger" }];
+    const mockData = [
+      { id: 2, name: "Hermione Granger", dateOfBirth: "", favorite: false },
+    ];
     (api.get as any).mockResolvedValue({ data: mockData });
 
     const result = await CharactersService.get.getStudents();
@@ -45,7 +49,9 @@ describe("CharactersService", () => {
   });
 
   test("getStaff - should return staff list", async () => {
-    const mockData = [{ id: 3, name: "Albus Dumbledore" }];
+    const mockData = [
+      { id: 3, name: "Albus Dumbledore", dateOfBirth: "", favorite: false },
+    ];
     (api.get as any).mockResolvedValue({ data: mockData });
 
     const result = await CharactersService.get.getStaff();

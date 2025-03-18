@@ -7,7 +7,11 @@ const CharactersService = {
     getCharacters: async () => {
       try {
         const response = await api.get<CharactersResponse[]>("/characters");
-        return response.data;
+        return response.data.map((character) => ({
+          ...character,
+          favorite: false,
+          dateOfBirth: character.dateOfBirth || "",
+        }));
       } catch {
         return [];
       }
@@ -17,7 +21,11 @@ const CharactersService = {
         const response = await api.get<CharactersResponse[]>(
           "/characters/students",
         );
-        return response.data;
+        return response.data.map((character) => ({
+          ...character,
+          favorite: false,
+          dateOfBirth: character.dateOfBirth || "",
+        }));
       } catch {
         return [];
       }
@@ -26,7 +34,11 @@ const CharactersService = {
       try {
         const response =
           await api.get<CharactersResponse[]>("/characters/staff");
-        return response.data;
+        return response.data.map((character) => ({
+          ...character,
+          favorite: false,
+          dateOfBirth: character.dateOfBirth || "",
+        }));
       } catch {
         return [];
       }

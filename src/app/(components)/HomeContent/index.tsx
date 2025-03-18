@@ -27,7 +27,7 @@ export default function HomeContent() {
           setList(
             characters.map((character) => ({
               ...character,
-              favorite: favorites?.includes(character.id) || false,
+              favorite: favorites?.includes(character.id),
             })),
           );
         })
